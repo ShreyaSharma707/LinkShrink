@@ -25,7 +25,6 @@ It supports secure authentication, anonymous and authenticated URL shortening, R
  🔗 Anonymous URL Shortening
  👤 User Registration & Login
  ✏️ Custom Short URLs
- 📊 Click Analytics
  ⚡ Redis Caching for Fast Redirects
  🚀 BullMQ Background Worker
  🗑️ Delete URLs
@@ -33,7 +32,7 @@ It supports secure authentication, anonymous and authenticated URL shortening, R
  📋 User Dashboard
  🛡️ Rate Limiting
  📄 Request Logging
- ❤️ Health Check Endpoint
+
 
 ---
 
@@ -54,27 +53,13 @@ It supports secure authentication, anonymous and authenticated URL shortening, R
 
 ---
 
-## 🚀 Performance Benchmark
-
-The application was benchmarked under concurrent load to evaluate throughput and response latency.
-
-| Metric | Value |
-|---------|-------|
-| Concurrent Virtual Users | 500 |
-| Total Requests Processed | 18,616 |
-| Throughput | ~1,829 requests/sec |
-| Successful Redirects | 16,140 |
-| Median Response Time | 288 ms |
-| P95 Response Time | 374 ms |
-| Test Duration | 10 seconds |
-
-
 ### Performance Optimizations
 
 - ⚡ Redis caching reduces repeated MongoDB lookups.
 - 🚀 BullMQ processes click analytics asynchronously.
 - 📈 Stateless backend designed for horizontal scaling.
 - 🛡️ Rate limiting protects the API from abuse.
+- 
 ## 📂 Project Structure
 
 ```
@@ -177,290 +162,6 @@ Track URL performance with click analytics and usage statistics.
 ### Database
 - MongoDB Atlas is used as the primary persistent data store for users, URLs, and analytics.
 
-
-# 📚 API Documentation
-
-## Base URL
-
-### Production
-
-```text
-https://url-shortener-fqv4.onrender.com
-```
-
-### Local Development
-
-```text
-http://localhost:3000
-```
-
----
-
-# Authentication
-
-Authentication is handled using **JWT stored in HttpOnly Cookies**.
-
-After a successful login or registration, the backend automatically sets the authentication cookie.
-
----
-
-# API Endpoints
-
-## Authentication
-
-### Register User
-
-```http
-POST /api/auth/register
-```
-
-### Request Body
-
-```json
-{
-  "name": "Rohit Singh",
-  "email": "rohit@example.com",
-  "password": "password123"
-}
-```
-
-### Success Response
-
-```json
-{
-  "message": "register success"
-}
-```
-
----
-
-## Login
-
-```http
-POST /api/auth/login
-```
-
-### Request Body
-
-```json
-{
-  "email": "rohit@example.com",
-  "password": "password123"
-}
-```
-
-### Success Response
-
-```json
-{
-  "message": "login success",
-  "user": {
-    "_id": "...",
-    "name": "Rohit Singh",
-    "email": "rohit@example.com"
-  }
-}
-```
-
----
-
-## Logout
-
-```http
-POST /api/auth/logout
-```
-
-### Success Response
-
-```json
-{
-  "message": "logout success"
-}
-```
-
----
-
-## Get Current User
-
-```http
-GET /api/auth/me
-```
-
-### Success Response
-
-```json
-{
-  "user": {
-    "_id": "...",
-    "name": "Rohit Singh",
-    "email": "rohit@example.com"
-  }
-}
-```
-
----
-
-# URL Management
-
-## Create Short URL (Anonymous)
-
-```http
-POST /api/create
-```
-
-### Request
-
-```json
-{
-  "url": "https://google.com"
-}
-```
-
-### Response
-
-```json
-{
-  "shortUrl": "https://your-domain/abc123"
-}
-```
-
----
-
-## Create Custom Short URL (Authenticated)
-
-```http
-POST /api/create
-```
-
-### Request
-
-```json
-{
-  "url": "https://google.com",
-  "slug": "google"
-}
-```
-
-### Response
-
-```json
-{
-  "shortUrl": "https://your-domain/google"
-}
-```
-
----
-
-## Redirect
-
-```http
-GET /:shortCode
-```
-
-Example
-
-```text
-GET /abc123
-```
-
-Response
-
-```
-302 Redirect
-```
-
-Redirects the user to the original URL.
-
----
-
-## Get User URLs
-
-```http
-GET /api/user/urls?page=1&limit=10
-```
-
-Authentication Required
-
-### Response
-
-```json
-{
-  "success": true,
-  "urls": [],
-  "pagination": {
-    "page": 1,
-    "limit": 10,
-    "total": 5,
-    "totalPages": 1
-  }
-}
-```
-
----
-
-## Update Custom Slug
-
-```http
-PATCH /api/user/url/:id
-```
-
-Authentication Required
-
-### Request
-
-```json
-{
-  "slug": "newslug"
-}
-```
-
-### Response
-
-```json
-{
-  "success": true,
-  "url": {}
-}
-```
-
----
-
-## Delete URL
-
-```http
-DELETE /api/user/url/:id
-```
-
-Authentication Required
-
-### Response
-
-```json
-{
-  "success": true,
-  "message": "URL deleted successfully"
-}
-```
-
----
-
-# Health Check
-
-```http
-GET /health
-```
-
-### Response
-
-```json
-{
-  "status": "OK"
-}
-```
-
-
----
-
 # Response Status Codes
 
 | Status Code | Description |
@@ -481,14 +182,13 @@ GET /health
 # Security Features
 
 - JWT Authentication
+- Input Validation
+- Password Hashing
+- Protected Routes
 - HttpOnly Cookies
 - Rate Limiting
 - Redis Caching
 - Request Logging
-- Input Validation
-- Password Hashing
-- Protected Routes
-
 
 ---
 
@@ -497,8 +197,6 @@ GET /health
 - QR Code Generation
 - URL Expiration
 - Password Protected Links
-- Docker Support
-- CI/CD Pipeline
 - Custom Domains
 - Advanced Analytics
 
@@ -506,7 +204,6 @@ GET /health
 
 ## 👨‍💻 Author
 
-**Rohit Singh**
+**Shreya Sharma**
 
 
-If you found this project interesting, feel free to ⭐ the repository.
