@@ -59,7 +59,7 @@ It supports secure authentication, anonymous and authenticated URL shortening, R
 - 🚀 BullMQ processes click analytics asynchronously.
 - 📈 Stateless backend designed for horizontal scaling.
 - 🛡️ Rate limiting protects the API from abuse.
-- 
+  
 ## 📂 Project Structure
 
 ```
