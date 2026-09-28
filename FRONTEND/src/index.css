@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+:root {
+	--ink: #17202a;
+	--ink-soft: #52606d;
+	--paper: #f7f4ee;
+	--surface: #fffdf9;
+	--line: #ddd7cc;
+	--coral: #e76f51;
+	--coral-dark: #c9563b;
+	--mint: #dcefe8;
+	--mint-dark: #2f6f61;
+	--sun: #f4c95d;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+button,
+input {
+	font: inherit;
+}
+
+.app-nav {
+	border-bottom: 1px solid var(--line);
+	background: rgba(255, 253, 249, 0.92);
+	backdrop-filter: blur(12px);
+}
+
+.brand-mark {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	color: var(--ink);
+	font-size: 1.2rem;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.brand-mark::before {
+	width: 0.7rem;
+	height: 0.7rem;
+	border-radius: 50%;
+	background: var(--coral);
+	box-shadow: 0.45rem -0.25rem 0 var(--sun);
+	content: "";
+}
+
+.page-shell {
+	min-height: calc(100vh - 65px);
+	background:
+		radial-gradient(circle at 12% 14%, rgba(244, 201, 93, 0.2), transparent 24rem),
+		linear-gradient(135deg, var(--paper) 0%, #f1eee7 100%);
+}
+
+.hero-grid {
+	background-image: linear-gradient(rgba(23, 32, 42, 0.045) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(23, 32, 42, 0.045) 1px, transparent 1px);
+	background-size: 30px 30px;
+}
+
+.surface {
+	border: 1px solid var(--line);
+	background: var(--surface);
+	box-shadow: 10px 12px 0 rgba(23, 32, 42, 0.06);
+}
+
+.eyebrow {
+	color: var(--coral-dark);
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	font-size: 0.72rem;
+	font-weight: 800;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+.input-field {
+	width: 100%;
+	border: 1px solid var(--line);
+	border-radius: 0.45rem;
+	background: #fffefa;
+	color: var(--ink);
+	outline: none;
+	transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.input-field:focus {
+	border-color: var(--coral);
+	box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.16);
+}
+
+.primary-button,
+.secondary-button {
+	border-radius: 0.45rem;
+	font-family: ui-sans-serif, system-ui, sans-serif;
+	font-size: 0.88rem;
+	font-weight: 750;
+	transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.primary-button {
+	background: var(--coral);
+	color: white;
+}
+
+.primary-button:hover {
+	background: var(--coral-dark);
+	box-shadow: 0 4px 0 #913b2a;
+	transform: translateY(-1px);
+}
+
+.secondary-button {
+	border: 1px solid var(--ink);
+	background: transparent;
+	color: var(--ink);
+}
+
+.secondary-button:hover {
+	background: var(--ink);
+	color: white;
+}
+
+.status-success {
+	border: 1px solid #b8d8cc;
+	background: var(--mint);
+	color: var(--mint-dark);
+}
+
+.status-error {
+	border: 1px solid #f2b6a7;
+	background: #fff0eb;
+	color: #9d3e2c;
+}

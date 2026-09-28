@@ -1,0 +1,17 @@
+{
+  "name": "linkshrink",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "infra": "docker compose -f BACKEND/docker-compose.yml up -d mongo redis",
+    "dev": "npm run infra && concurrently -k -n API,WORKER,FRONTEND -c blue,magenta,green \"npm run dev --prefix BACKEND\" \"npm run worker --prefix BACKEND\" \"npm run dev --prefix FRONTEND\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
